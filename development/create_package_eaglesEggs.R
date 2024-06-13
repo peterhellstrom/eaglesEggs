@@ -61,39 +61,25 @@ build_readme()
 #    Use `requireNamespace("ggplot2", quietly = TRUE)` to test if package is installed
 #    • Then directly refer to functions with `ggplot2::fun()`
 
+# 'cellranger' 'dplyr' 'janitor' 'lubridate' 'purrr' 'readr' 'readxl'
+# 'stringr' 'tibble' 'tidyr' 'tidyselect' 'tidyxl'
+
+usethis::use_package("cellranger", min_version = TRUE)
 usethis::use_package("dplyr", min_version = TRUE)
+usethis::use_package("janitor", min_version = TRUE)
+usethis::use_package("lubridate", min_version = TRUE)
 usethis::use_package("purrr", min_version = TRUE)
+usethis::use_package("readr", min_version = TRUE)
+usethis::use_package("readxl", min_version = TRUE)
+usethis::use_package("stringr", min_version = TRUE)
 usethis::use_package("tibble", min_version = TRUE)
 usethis::use_package("tidyr", min_version = TRUE)
-usethis::use_package("stringr", min_version = TRUE)
-usethis::use_package("readr", min_version = TRUE)
 usethis::use_package("tidyselect", min_version = TRUE)
-usethis::use_package("glue", min_version = TRUE)
-usethis::use_package("unglue", min_version = TRUE)
-usethis::use_package("lubridate", min_version = TRUE)
-usethis::use_package("rvest", min_version = TRUE)
-usethis::use_package("xml2", min_version = TRUE)
-usethis::use_package("XML", min_version = TRUE)
-usethis::use_package("rlang", min_version = TRUE)
-
-usethis::use_package("sf", min_version = TRUE)
-usethis::use_package("leaflet", min_version = TRUE)
-usethis::use_package("leaflet.extras", min_version = TRUE)
-usethis::use_package("leafem", min_version = TRUE)
-usethis::use_package("geosphere", min_version = TRUE)
-usethis::use_package("rmapshaper", min_version = TRUE)
-usethis::use_package("units", min_version = TRUE)
-usethis::use_package("igraph", min_version = TRUE)
-
-usethis::use_package("DBI", min_version = TRUE)
-usethis::use_package("RSQLite", min_version = TRUE)
-usethis::use_package("readxl", min_version = TRUE)
+usethis::use_package("tidyxl", min_version = TRUE)
 
 # Suggests ----
 usethis::use_package("ggplot2", "Suggests")
 usethis::use_package("writexl", "Suggests")
-usethis::use_package("tmap", "Suggests")
-usethis::use_package("terra", "Suggests")
 
 requireNamespace("ggplot2", quietly = TRUE)
 

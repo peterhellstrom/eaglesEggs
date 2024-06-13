@@ -1,3 +1,8 @@
 ^eaglesEggs\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
+^backup$
+^data-raw$
+^development$
+^examples$
+^README\.Rmd$
