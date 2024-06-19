@@ -17,6 +17,7 @@ use_git_config(
   user.name = "peterhellstrom",
   user.email = "peter.hellstrom@nrm.se"
 )
+
 usethis::use_git()
 usethis::use_github()
 

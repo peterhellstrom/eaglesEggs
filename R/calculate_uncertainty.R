@@ -1,5 +1,3 @@
-# Calculate uncertainty ----
-
 # Calculate uncertainty for CLC (pesticides) and BFRs,
 # according to ACES specifications.
 # Note these functions [limits and coefficients] assume

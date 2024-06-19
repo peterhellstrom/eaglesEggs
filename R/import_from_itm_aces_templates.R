@@ -99,7 +99,7 @@ read_lab_file_itm_header <- function(
 
 # To do:
 # - argument cols_first_5 will likely fail for other sheets than "results",
-#   must be change
+#   must be changed
 # - is the lab option necessary, should we read that from "general info" sheet instead?
 # - can we add functionality with get_data_range(), now we need to supply a data range?
 
