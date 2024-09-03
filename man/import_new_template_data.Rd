@@ -4,7 +4,12 @@
 \alias{import_new_template_data}
 \title{Title}
 \usage{
-import_new_template_data(path, sheet = c("results", "uncertainty"), range)
+import_new_template_data(
+  path,
+  sheet = c("results", "uncertainty"),
+  range,
+  rename = TRUE
+)
 }
 \arguments{
 \item{range}{}
