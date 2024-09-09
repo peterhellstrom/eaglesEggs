@@ -4,10 +4,15 @@
 \alias{fix_missing}
 \title{Title}
 \usage{
-fix_missing(x, missing = -99.99)
+fix_missing(
+  .x,
+  .replace_values = c(-99.99, -9, -99, 0, NA, NaN, Inf),
+  .replace_with = NA,
+  method = c("replace", "subset")
+)
 }
 \arguments{
-\item{missing}{}
+\item{na_vec}{}
 }
 \description{
 Title

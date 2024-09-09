@@ -1,3 +1,82 @@
+#' Title
+#'
+#' @param egg_length
+#' @param egg_width
+#' @param shell_thickness
+#' @param unit
+#' @param type
+#' @param replace_na_shell_thickness
+#' @param a
+#' @param b
+#'
+#' @return
+#' @export
+#'
+#' @examples
+egg_volume <- function(
+    egg_length,
+    egg_width,
+    shell_thickness,
+    unit = NULL,
+    type = NULL,
+    replace_na_shell_thickness = TRUE,
+    a = 0.0373,
+    b = 35.3
+) {
+
+  if (is.null(unit)) unit <- "mm"
+  if (is.null(type)) type <- "inner"
+
+  # unit <- match.arg(unit)
+  # type = match.arg(type)
+
+  a <- dplyr::case_when(
+    unit == "cm" ~ a * 100,
+    unit == "mm" ~ a,
+    TRUE ~ NA_real_
+  )
+
+  shell_thickness <- dplyr::case_when(
+    type == "outer" ~ 0,
+    type == "inner" ~ shell_thickness,
+    TRUE ~ NA_real_
+  )
+
+  shell_thickness <- dplyr::case_when(
+    replace_na_shell_thickness ~ tidyr::replace_na(shell_thickness, 0),
+    TRUE ~ shell_thickness
+  )
+
+  x <- (egg_length - 2 * shell_thickness) *
+    (egg_width - 2 * shell_thickness)
+
+  a * x - b
+
+}
+
+# egg_volume(71.65, 58.39, 0.63)
+# egg_volume(71.65, 58.39, 0.63, unit = "mm")
+# egg_volume(7.165, 5.839, 0.063, unit = "cm")
+# egg_volume(7.165, 5.839, 0.063, unit = "cm", type = "outer")
+#
+# egg_volume(7.165, 5.839, NA, unit = "cm", replace_na_shell_thickness = FALSE)
+#
+# z <- tribble(
+#   ~egg_length, ~egg_width, ~shell_thickness, ~unit,
+#   71.65, 58.39, 0.63, "mm",
+#   7.165, 5.839, 0.063, "cm",
+#   7.165, 5.839, NA, "cm"
+# ) |>
+#   mutate(
+#     vol = egg_volume(
+#       egg_length, egg_width, shell_thickness, unit,
+#       replace_na_shell_thickness = FALSE
+#     )
+#   )
+#
+# z
+
+
 # Egg volume = (0.0373 x Length[mm] x Width[mm]) - 35.3; Stickel et al. (1973)
 # use coalesce here?
 #' Title

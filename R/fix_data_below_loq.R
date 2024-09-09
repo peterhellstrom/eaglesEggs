@@ -7,79 +7,57 @@
 #' @export
 #'
 #' @examples
-na_if_n <- function(x, na_vec = c(-99.99, -9, -99, 0, NA, NaN, Inf)) {
-  base::replace(x, base::which(x %in% na_vec), NA)
-}
+fix_missing <- function(
+    .x,
+    .replace_values = c(-99.99, -9, -99, 0, NA, NaN, Inf),
+    .replace_with = NA,
+    method = c("replace", "subset")
+) {
 
-#' Title
-#'
-#' @param x
-#' @param missing
-#'
-#' @return
-#' @export
-#'
-#' @examples
-fix_missing <- function(x, missing = -99.99) {
-  x[x %in% missing] <- NA
-  x
-}
+  method <- match.arg(method, c("replace", "subset"))
 
-#' Title
-#'
-#' @param x
-#' @param missing
-#' @param rm.missing
-#'
-#' @return
-#' @export
-#'
-#' @examples
-fix_below_loq <- function(x, missing = -99.99, rm.missing = TRUE) {
-  if (rm.missing) {
-    x <- fix_missing(x, missing)
+  if (method == "replace") {
+    base::replace(.x, base::which(.x %in% .replace_values), .replace_with)
+  } else if (method == "subset") {
+    .x[.x %in% .replace_values] <- .replace_with
+    .x
   }
-  inds <- x < 0 & !x %in% missing & !is.na(x)
-  x[inds] <- abs(x[inds] / 2)
-  x
+
 }
 
 #' Title
 #'
 #' @param .x
+#' @param .bound
+#' @param .replace_na
 #'
 #' @return
 #' @export
 #'
 #' @examples
-fix_below_loq <- function(.x) {
-  -base::pmin(-.x, .x/2)
-}
+fix_below_loq <- function(
+    .x,
+    .bound = c("medium", "lower", "upper"),
+    .replace = TRUE,
+    .replace_values = c(-99.99, -9, -99, 0, NA, NaN, Inf),
+    .replace_with = NA
+) {
 
-#' Title
-#'
-#' @param x
-#' @param missing
-#'
-#' @return
-#' @export
-#'
-#' @examples
-fix_below_loq_2 <- function(x, missing = -99.99) {
-  ifelse(x < 0 & !x %in% missing & !is.na(x), abs(x / 2), x) }
+  .bound <- match.arg(.bound, c("medium", "lower", "upper"))
 
-#' Title
-#'
-#' @param .x
-#' @param .na_values
-#'
-#' @return
-#' @export
-#'
-#' @examples
-fix_below_loq_3 <- function(.x, .na_values = c(-99.99, -9, -99)) {
-  x <- dplyr::na_if(.x, .na_values)
-  dplyr::if_else(.x < 0, base::abs(.x / 2), .x)
+  if (.replace) {
+    .x <- fix_missing(.x, .replace_values, .replace_with)
+  }
+
+  if (.bound == "medium") {
+    pmax(.x, -.x/2)
+  } else if (.bound == "lower") {
+    pmax(.x, 0)
+  } else if (.bound == "upper") {
+    # pmax(.x, -.x)
+    abs(.x)
+  }
+
 }
 
 # take sum of a variable containing e.g. -99.99, i.e. treat a numeric value as NA

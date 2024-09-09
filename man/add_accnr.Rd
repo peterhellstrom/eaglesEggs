@@ -4,7 +4,7 @@
 \alias{add_accnr}
 \title{Title}
 \usage{
-add_accnr(.data, .variable = "PROV_KOD_LABB")
+add_accnr(.data, .variable = "PROV_KOD_ORIGINAL")
 }
 \arguments{
 \item{.variable}{}

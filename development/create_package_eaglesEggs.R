@@ -6,7 +6,7 @@
 library(devtools)
 
 # Create project ----
-p <- "W:/projects/R/eaglesEggs"
+# p <- "W:/projects/R/eaglesEggs"
 # usethis::create_package(p, check_name = FALSE)
 
 # License ----

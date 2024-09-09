@@ -66,7 +66,7 @@ format_accnr <- function(
 #' @export
 #'
 #' @examples
-add_accnr <- function(.data, .variable = "PROV_KOD_LABB") {
+add_accnr <- function(.data, .variable = "PROV_KOD_ORIGINAL") {
   .data |>
     dplyr::mutate(
       dplyr::across(

@@ -4,17 +4,17 @@
 \alias{fix_below_loq}
 \title{Title}
 \usage{
-fix_below_loq(.x)
-
-fix_below_loq(.x)
+fix_below_loq(
+  .x,
+  .bound = c("medium", "lower", "upper"),
+  .replace = TRUE,
+  .replace_values = c(-99.99, -9, -99, 0, NA, NaN, Inf),
+  .replace_with = NA
+)
 }
 \arguments{
-\item{.x}{}
-
-\item{rm.missing}{}
+\item{.replace_na}{}
 }
 \description{
-Title
-
 Title
 }
