@@ -11,6 +11,7 @@ BugReports: https://github.com/peterhellstrom/eaglesEggs/issues
 Imports: 
     cellranger (>= 1.1.0),
     dplyr (>= 1.1.4),
+    eagles (>= 0.0.0.9000),
     janitor (>= 2.2.0),
     lubridate (>= 1.9.3),
     purrr (>= 1.0.2),
@@ -24,6 +25,8 @@ Imports:
 Suggests: 
     ggplot2,
     writexl
+Remotes: 
+    github::peterhellstrom/eagles
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.2
