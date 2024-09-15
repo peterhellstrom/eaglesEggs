@@ -74,7 +74,10 @@ wtse_provdata_biota <- function() {
 #' @examples
 wtse_sites_provmetadata <- function(
     dsn = "Havsorn_Data") {
-  eagles::wtse_sites(odbc_name = dsn, add_monitoring = FALSE) |>
+  eagles::wtse_sites(
+    odbc_name = dsn,
+    add_monitoring = FALSE
+  ) |>
     dplyr::select(Region, Lokalkod, Lan) |>
     dplyr::mutate(
       PROVDATA_TYP = "BIOTA",
