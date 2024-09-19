@@ -162,7 +162,7 @@ wtse_eggs_from_excel <- function(
     dplyr::mutate(
       # How should SEX/KON be treated, this is not even a valid
       # parameter if an egg is not fertilized?
-      KON = "U",
+      KON = "I",
       #Assume no pools!
       ANTAL = 1,
       # Assume no pools to start with!
@@ -174,8 +174,8 @@ wtse_eggs_from_excel <- function(
       dplyr::mutate(
         # Convert from mm to cm
         # (as this is the unit we have specified in our codelist!)
-        TOTL = TOTL/10,
-        BRED = BRED/10
+        TOTL = TOTL / 10,
+        BRED = BRED / 10
       )
   }
 
@@ -261,8 +261,8 @@ wtse_eggs_from_esbase <- function(
       dplyr::mutate(
         # Convert from mm to cm
         # (as this is the unit we have specified in our codelist!)
-        TOTL = TOTL/10,
-        BRED = BRED/10
+        TOTL = TOTL / 10,
+        BRED = BRED / 10
       )
   }
 
