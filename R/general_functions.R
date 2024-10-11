@@ -18,4 +18,3 @@ fix_null_strings <- function(.data, .na_values = c("", "-")) {
       )
     )
 }
-

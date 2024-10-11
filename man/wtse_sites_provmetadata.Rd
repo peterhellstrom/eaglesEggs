@@ -4,7 +4,7 @@
 \alias{wtse_sites_provmetadata}
 \title{Title}
 \usage{
-wtse_sites_provmetadata(dsn = "Havsorn_Data")
+wtse_sites_provmetadata(path = "eggs.xlsx", dsn = "Havsorn_Data")
 }
 \arguments{
 \item{dsn}{}

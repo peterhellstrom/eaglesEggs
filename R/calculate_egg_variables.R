@@ -78,7 +78,6 @@ egg_volume <- function(
 
 
 # Egg volume = (0.0373 x Length[mm] x Width[mm]) - 35.3; Stickel et al. (1973)
-# use coalesce here?
 #' Title
 #'
 #' @param egg_length
@@ -112,64 +111,6 @@ egg_vol <- function(
 #egg_vol(72, 58.85, "inner", 0.6)
 #egg_vol(72, 58.85, "inner")
 #egg_vol(72, 58.85, "inner", 0)
-
-# Egg shell index = (1000 * ShellWeight[g]) / (Length[mm] * Width[mm])
-
-#' Title
-#'
-#' @param egg_length
-#' @param egg_width
-#' @param shell_weight
-#'
-#' @return
-#' @export
-#'
-#' @examples
-egg_shell_index <- function(egg_length, egg_width, shell_weight) {
-  (1000 * shell_weight) / (egg_length * egg_width) }
-
-# Egg desiccation index = (EggWeight[g] - ShellWeight[g]) / [Inner] Egg Volume
-
-#' Title
-#'
-#' @param egg_weight
-#' @param shell_weight
-#' @param egg_volume
-#'
-#' @return
-#' @export
-#'
-#' @examples
-egg_desicc_index <- function(egg_weight, shell_weight, egg_volume) {
-  (egg_weight - shell_weight) / egg_volume }
-
-# Fettinnehåll i gram: EggFatG = (fprc * (EggWeight - ShellWeight)) / 100
-
-#' Title
-#'
-#' @param egg_weight
-#' @param shell_weight
-#' @param fprc
-#'
-#' @return
-#' @export
-#'
-#' @examples
-egg_fat_weight <- function(egg_weight, shell_weight, fprc) {
-  (fprc * (egg_weight - shell_weight)) / 100 }
-
-# Ursprunglig fett%: EggFatPrc = 100 * EggFatG / [Inner] Egg Volume
-#' Title
-#'
-#' @param fat_weight
-#' @param egg_volume
-#'
-#' @return
-#' @export
-#'
-#' @examples
-egg_fprc_orig <- function(fat_weight, egg_volume) {
-  100 * fat_weight / egg_volume }
 
 # Embryonal development correction factor
 # difficult if embryo has not been measured as a a numeric value,

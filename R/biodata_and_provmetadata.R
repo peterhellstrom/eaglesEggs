@@ -51,8 +51,11 @@ wtse_sites_eggs <- function(
 #' @export
 #'
 #' @examples
-wtse_provdata_biota <- function() {
-  wtse_sites_eggs() |>
+wtse_provdata_biota <- function(
+    path = "eggs.xlsx"
+) {
+
+  wtse_sites_eggs(path = path) |>
     dplyr::select(PROV_KOD_ORIGINAL) |>
     dplyr::distinct() |>
     dplyr::mutate(
@@ -73,11 +76,18 @@ wtse_provdata_biota <- function() {
 #'
 #' @examples
 wtse_sites_provmetadata <- function(
-    dsn = "Havsorn_Data") {
-  eagles::wtse_sites(
+    path = "eggs.xlsx",
+    dsn = "Havsorn_Data"
+) {
+
+  sites <- eagles::wtse_sites(
     odbc_name = dsn,
     add_monitoring = FALSE
-  ) |>
+  )
+
+  eggs <- wtse_eggs_from_excel(path = path)
+
+  sites <- sites |>
     dplyr::select(Region, Lokalkod, Lan) |>
     dplyr::mutate(
       PROVDATA_TYP = "BIOTA",
@@ -90,7 +100,8 @@ wtse_sites_provmetadata <- function(
         Lan == "Y" ~ "LST-Y",
         TRUE ~ "NRM"
       ),
-      UNDERSOKNINGSTYP = "Havsörn, bestånd (Version 1.0)",
+      # UNDERSOKNINGSTYP = "Havsörn, bestånd (Version 1.0)",
+      UNDERSOKNINGSTYP = NA_character_,
       PROVPLATS_MILJO = dplyr::case_when(
         stringr::str_detect(Region, "(?i)kust") ~ "HAV-BRACKV",
         stringr::str_detect(Region, "(?i)inland") ~ "SJO-SOTV-RINN",
@@ -132,6 +143,7 @@ wtse_eggs_from_excel <- function(
     dplyr::select(
       PROV_KOD_ORIGINAL = `Acc-nr`,
       discovery_date_start = ins.datum,
+      collector = collector,
       specimen_weight = `ins.vikt (g)`,
       egg_length = `längd (mm)`,
       egg_width = `bredd (mm)`,
@@ -156,10 +168,11 @@ wtse_eggs_from_excel <- function(
       TOTL = egg_length,
       BRED = egg_width,
       SKLV = shell_weight,
-      # SKLI = shell_index,
       FOSL = embryo_length
     ) |>
     dplyr::mutate(
+      # Calculate shell index!
+      # SKLI = shell_index,
       # How should SEX/KON be treated, this is not even a valid
       # parameter if an egg is not fertilized?
       KON = "I",
@@ -167,6 +180,41 @@ wtse_eggs_from_excel <- function(
       ANTAL = 1,
       # Assume no pools to start with!
       ANTAL_DAGAR = 1
+    )
+
+  out <- out |>
+    dplyr::mutate(
+      PROVTAG_ORG = dplyr::case_when(
+        stringr::str_detect(collector, "Schönbeck") ~ "OBF",
+        # NOF: lägger in Harnesk här också, även om han kanske inte har stark koppling till föreningen?
+        stringr::str_detect(collector, "Lindström|Öhman|Harnesk") ~ "NOF",
+        stringr::str_detect(collector, "Strandtorn|Lundberg") ~ "RINGMARKARE",
+        stringr::str_detect(collector, "Anders Johansson") ~ "RINGMARKARE",
+        stringr::str_detect(collector, "Hjulström") ~ "RINGMARKARE",
+        stringr::str_detect(collector, "Folkesson") ~ "SKOF",
+        stringr::str_detect(collector, "Hellström") ~ "NRM",
+        stringr::str_detect(collector, "Westerlund") ~ "ROSLAGSNATUR",
+        stringr::str_detect(collector, "Smitterberg|Hjernquist") ~ "GOF_GOTL",
+        stringr::str_detect(collector, "Peter Nilsson|Frans Olofsson") ~ "LST-Y",
+        stringr::str_detect(collector, "Englund|Karelius|Thuresson") ~ "GLOF",
+        stringr::str_detect(collector, "Wallin|Enetjärn") ~ "VOF_VASTERB",
+        # Modigh verksam/anställd inom NATURSKYDDSFORENINGEN 2006-2019, anställd av NRM 2020
+        # därefter utan affiliering till organisation eller förening
+        stringr::str_detect(collector, "Modigh") & PROVTAG_DAT > "2021-01-01" ~ "RINGMARKARE",
+        stringr::str_detect(collector, "Modigh") & dplyr::between(PROVTAG_DAT, as.Date("2020-01-01"), as.Date("2020-12-31")) ~ "NRM",
+        stringr::str_detect(collector, "Modigh") & PROVTAG_DAT < "2019-12-31" ~ "NATURSKYDDSFORENINGEN",
+        stringr::str_detect(collector, "Helander") & PROVTAG_DAT < "1984-12-31" ~ "NATURSKYDDSFORENINGEN",
+        # Björn Helander: mellan 1985-2005 då han övergår till heltidstjänst på NRM?
+        stringr::str_detect(collector, "Helander") & dplyr::between(PROVTAG_DAT, as.Date("1985-01-01"), as.Date("2005-12-31")) ~ "NRM",
+        stringr::str_detect(collector, "Helander") & dplyr::between(PROVTAG_DAT, as.Date("2006-01-01"), as.Date("2013-08-01")) ~ "NRM",
+        # Hur ska Björn Helander hanteras efter pensionering? Namn på företag, men haft affiliering till NRM!
+        stringr::str_detect(collector, "Helander") & PROVTAG_DAT > "2013-08-01" ~ "NRM",
+        PROVTAG_DAT < "1989-01-01" ~ "NATURSKYDDSFORENINGEN"
+      )
+    ) |>
+    dplyr::relocate(
+      PROVTAG_ORG,
+      .after = collector
     )
 
   if (length_unit == "cm") {
@@ -249,7 +297,7 @@ wtse_eggs_from_esbase <- function(
     dplyr::mutate(
       # How should SEX/KON be treated, this is not even a valid
       # parameter if an egg is not fertilized?
-      KON = "U",
+      KON = "I",
       # Assume no pooled samples!
       ANTAL = 1,
       # Assume no pools to start with!
