@@ -20,7 +20,7 @@
 #' @examples
 calculate_uncertainty <- function(.x, limit, coef_above, coef_below) {
   dplyr::case_when(
-    .x < 0 ~ NA_real_,
+    .x <= 0 ~ NA_real_,
     .x > limit ~ coef_above * .x,
     TRUE ~ coef_below * .x
   )
@@ -42,7 +42,7 @@ calculate_uncertainty_2 <- function(data, column, cut, const1, const2) {
   data |>
     dplyr::mutate(
       {{ column }} := dplyr::case_when(
-        {{ column }} < 0 ~ NA_real_,
+        {{ column }} <= 0 ~ NA_real_,
         dplyr::between( {{ column }}, 0, cut) ~ const1 * {{ column }},
         {{ column }} > cut ~ const2 * {{ column }},
         TRUE ~ NA_real_)

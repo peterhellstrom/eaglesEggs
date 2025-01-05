@@ -7,8 +7,6 @@
 stn_reg_import(DV = NULL, ...)
 }
 \arguments{
-\item{DV}{}
-
 \item{...}{}
 }
 \description{

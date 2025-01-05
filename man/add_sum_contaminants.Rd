@@ -8,6 +8,7 @@ add_sum_contaminants(
   .cols,
   .na_values = c(-9, -99, -99.99),
   .na_numeric = -99.99,
+  .bound = "medium",
   na.rm = TRUE
 )
 }

@@ -88,7 +88,12 @@ sum_below_loq <- function(x, na.rm = TRUE, missing = -99.99) {
 #'
 #' @examples
 sum_below_loq_2 <- function(x, missing = -99.99, na.rm = TRUE) {
-  sum(fix_below_loq_2(ifelse(!x %in% missing & !is.na(x), x, NA)), na.rm = na.rm) }
+  sum(
+    fix_below_loq_2(
+      ifelse(!x %in% missing & !is.na(x), x, NA)
+    ),
+    na.rm = na.rm
+  ) }
 
 # Transform measured values from fresh weight basis to lipid weight basis
 # Ignore specified numeric value (e.g. -99.99), zeros and NAs
@@ -108,4 +113,3 @@ fresh_to_lipid <- function(x, FPRC, missing = -99.99) {
   dplyr::if_else(!x %in% missing & !is.na(x) & x != 0, 100 * x / FPRC, x) }
 
 #lipid_to_fresh <- function(lw, FPRC, missing=-99.99)
-

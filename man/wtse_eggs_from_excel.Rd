@@ -7,7 +7,7 @@
 wtse_eggs_from_excel(
   path = "eggs.xlsx",
   sheet = "Eggs",
-  length_unit = c("cm", "mm")
+  length_unit = c("mm", "cm")
 )
 }
 \arguments{

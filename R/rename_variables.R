@@ -35,4 +35,4 @@ rename_contaminants <- function(
     )
 }
 
-# rename_at(starts_with("BDE"), \(x) str_replace_all(x, "\\s+", "")
+# .data |> rename_at(starts_with("BDE"), \(x) str_replace_all(x, "\\s+", "")
