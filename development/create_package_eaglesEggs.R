@@ -2,7 +2,6 @@
 # devtools::install_github("r-lib/devtools")
 # devtools::install_github("r-lib/usethis")
 
-# can be added to .Rprofile startup file
 library(devtools)
 
 # Create project ----
