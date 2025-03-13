@@ -6,12 +6,15 @@
 \usage{
 wtse_eggs_from_excel(
   path = "eggs.xlsx",
-  sheet = "Eggs",
-  length_unit = c("mm", "cm")
+  sheet = "eggs",
+  skip = 1,
+  rename = TRUE,
+  collector_org = "PROVTAG_ORG",
+  accnr_only = TRUE
 )
 }
 \arguments{
-\item{length_unit}{}
+\item{accnr_only}{}
 }
 \description{
 Title

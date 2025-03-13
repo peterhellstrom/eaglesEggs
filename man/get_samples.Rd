@@ -7,7 +7,7 @@
 get_samples(path = "data_files.xlsx", sheet = "samples", include_dates = FALSE)
 }
 \arguments{
-\item{sheet}{}
+\item{include_dates}{}
 }
 \description{
 Title

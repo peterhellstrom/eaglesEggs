@@ -7,7 +7,7 @@
 wtse_sites_provmetadata(path = "eggs.xlsx", dsn = "Havsorn_Data")
 }
 \arguments{
-\item{dsn}{}
+\item{path}{}
 }
 \description{
 Title

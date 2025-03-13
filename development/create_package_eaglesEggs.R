@@ -9,18 +9,18 @@ library(devtools)
 # usethis::create_package(p, check_name = FALSE)
 
 # License ----
-usethis::use_mit_license()
+# usethis::use_mit_license()
 
 # Creat GitHub repository ----
-use_git_config(
-  user.name = "peterhellstrom",
-  user.email = "peter.hellstrom@nrm.se"
-)
-
-usethis::use_git()
-usethis::use_github()
-
-usethis::create_github_token()
+# use_git_config(
+#   user.name = "peterhellstrom",
+#   user.email = "peter.hellstrom@nrm.se"
+# )
+#
+# usethis::use_git()
+# usethis::use_github()
+#
+# usethis::create_github_token()
 
 # Load all ----
 load_all()

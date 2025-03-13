@@ -4,7 +4,10 @@
 \alias{wtse_provdata_biota}
 \title{Title}
 \usage{
-wtse_provdata_biota(path = "eggs.xlsx")
+wtse_provdata_biota(path = "eggs.xlsx", ...)
+}
+\arguments{
+\item{...}{}
 }
 \description{
 Title

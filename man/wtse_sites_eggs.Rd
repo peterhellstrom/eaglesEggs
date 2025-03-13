@@ -4,10 +4,16 @@
 \alias{wtse_sites_eggs}
 \title{Title}
 \usage{
-wtse_sites_eggs(path = "eggs.xlsx", sheet = "Eggs", include_labcode = FALSE)
+wtse_sites_eggs(
+  path = "eggs.xlsx",
+  sheet = "eggs",
+  include_labcode = FALSE,
+  skip = 1,
+  ...
+)
 }
 \arguments{
-\item{include_labcode}{}
+\item{...}{}
 }
 \description{
 Title

@@ -5,7 +5,7 @@
 \title{Title}
 \usage{
 get_samples_species(
-  codes_path = system.file("extdata", "codelist_wtse.xlsx", package = "MoCiS2")
+  codes_path = system.file("extdata", "codelist_wtse.xlsx", package = "MoCiS2.wtse")
 )
 }
 \arguments{

@@ -8,11 +8,14 @@ wtse_eggs_from_esbase(
   path = "esb/esbase/esbase_dump.db",
   extended_types = TRUE,
   query = "SELECT * FROM v_egg WHERE species_id = 597",
-  length_unit = c("mm", "cm")
+  rename = TRUE,
+  accnr_col = "PROV_KOD_ORIGINAL",
+  all_cols = FALSE,
+  ...
 )
 }
 \arguments{
-\item{length_unit}{}
+\item{query}{}
 }
 \description{
 Title

@@ -2,46 +2,7 @@
 #'
 #' @param path
 #' @param sheet
-#' @param range
-#' @param sheet_names
-#'
-#' @return
-#' @export
-#'
-#' @examples
-wtse_eggs_1996 <- function(
-    path = "eggs-1996.xlsx",
-    sheet = "data",
-    range = "A3:AG501",
-    sheet_names = "column_names"
-) {
-
-  # readxl::excel_sheets(path)
-
-  # New column names ----
-  col_names <- readxl::read_xlsx(path, sheet_names)
-
-  # Read data and rename columns ----
-  # Note that some columns are repeated, probably for easier reading on
-  # older smaller screens available at the time of creation of data set.
-
-  x <- readxl::read_xlsx(
-    path, sheet, range,
-    col_names = FALSE,
-    col_types = col_names$col_type,
-    .name_repair = "unique_quiet"
-  )
-
-  x |>
-    rlang::set_names(col_names$col_name_new)
-
-}
-
-
-#' Title
-#'
-#' @param path
-#' @param sheet
+#' @param include_dates
 #'
 #' @return
 #' @export
@@ -54,7 +15,10 @@ get_samples <- function(
 ) {
   out <- readxl::read_xlsx(path, sheet) |>
     dplyr::mutate(
-      ORGAN = stringi::stri_trans_general(materialtyp, 'Latin-ASCII') |>
+      ORGAN = stringi::stri_trans_general(
+        materialtyp,
+        'Latin-ASCII'
+      ) |>
         toupper(),
       ORGAN = dplyr::if_else(str_sub(ORGAN, 1, 3) == "AGG", "AGG", ORGAN)
     ) |>
@@ -63,9 +27,14 @@ get_samples <- function(
       PROV_KOD_LABB = labcode
     ) |>
     dplyr::select(
-      PROV_KOD_ORIGINAL, PROV_KOD_LABB,
-      art, materialtyp, ORGAN,
-      analystyp, analyslab, analysmetod,
+      PROV_KOD_ORIGINAL,
+      PROV_KOD_LABB,
+      art,
+      materialtyp,
+      ORGAN,
+      analystyp,
+      analyslab,
+      analysmetod,
       tidyselect::ends_with("datum")
     ) |>
     dplyr::mutate(
@@ -75,7 +44,9 @@ get_samples <- function(
     )
   if (!include_dates) {
     out <- out |>
-      dplyr::select(-tidyselect::ends_with("datum"))
+      dplyr::select(
+        -tidyselect::ends_with("datum")
+      )
   }
   out
 }
@@ -96,10 +67,10 @@ get_samples_ov_xl <- function(
 
   readxl::read_xlsx(path, sheet) |>
     dplyr::mutate(
-      Provberedningsdatum = as.Date(Provberedningsdatum)
+      provberedningsdatum = as.Date(provberedningsdatum)
     ) |>
     dplyr::rename(
-      PROV_KOD_ORIGINAL = Accnr
+      PROV_KOD_ORIGINAL = accnr
     )
 }
 
@@ -112,7 +83,7 @@ get_samples_ov_xl <- function(
 #'
 #' @examples
 get_samples_species <- function(
-    codes_path = system.file("extdata", "codelist_wtse.xlsx", package = "MoCiS2")
+    codes_path = system.file("extdata", "codelist_wtse.xlsx", package = "MoCiS2.wtse")
 ) {
 
   samples_species <- get_samples() |>
