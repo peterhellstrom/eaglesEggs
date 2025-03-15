@@ -197,32 +197,32 @@ wtse_eggs_from_excel <- function(
     out <- out |>
       dplyr::mutate(
         {{ collector_org }} := dplyr::case_when(
-          stringr::str_detect("collector", "Schönbeck|Hellqvist|Gullstrand") ~ "OBF",
+          stringr::str_detect(.data[["collector"]], "Schönbeck|Hellqvist|Gullstrand") ~ "OBF",
           # NOF: lägger in Harnesk här också:
-          stringr::str_detect("collector", "Lindström|Öhman|Harnesk") ~ "NOF",
-          stringr::str_detect("collector", "Strandtorn|Lundberg") ~ "RINGMARKARE",
-          stringr::str_detect("collector", "Anders Johansson") ~ "RINGMARKARE",
-          stringr::str_detect("collector", "Hjulström") ~ "RINGMARKARE",
-          stringr::str_detect("collector", "Folkesson") ~ "SKOF",
-          stringr::str_detect("collector", "Hellström") ~ "NRM",
-          stringr::str_detect("collector", "Westerlund") ~ "ROSLAGSNATUR",
-          stringr::str_detect("collector", "Smitterberg|Hjernquist") ~ "GOF_GOTL",
-          stringr::str_detect("collector", "Peter Nilsson|Frans Olofsson") ~ "LST-Y",
-          stringr::str_detect("collector", "Englund|Karelius|Thuresson") ~ "GLOF",
+          stringr::str_detect(.data[["collector"]], "Lindström|Öhman|Harnesk") ~ "NOF",
+          stringr::str_detect(.data[["collector"]], "Strandtorn|Lundberg") ~ "RINGMARKARE",
+          stringr::str_detect(.data[["collector"]], "Anders Johansson") ~ "RINGMARKARE",
+          stringr::str_detect(.data[["collector"]], "Hjulström") ~ "RINGMARKARE",
+          stringr::str_detect(.data[["collector"]], "Folkesson") ~ "SKOF",
+          stringr::str_detect(.data[["collector"]], "Hellström") ~ "NRM",
+          stringr::str_detect(.data[["collector"]], "Westerlund") ~ "ROSLAGSNATUR",
+          stringr::str_detect(.data[["collector"]], "Smitterberg|Hjernquist") ~ "GOF_GOTL",
+          stringr::str_detect(.data[["collector"]], "Peter Nilsson|Frans Olofsson") ~ "LST-Y",
+          stringr::str_detect(.data[["collector"]], "Englund|Karelius|Thuresson") ~ "GLOF",
           # Hur blir det med Modighs ägg insamlade i Västerbotten om
           # VOF_VASTERB kommer före modigh i denna case_when-sats?
-          stringr::str_detect("collector", "Wallin|Enetjärn") ~ "VOF_VASTERB",
+          stringr::str_detect(.data[["collector"]], "Wallin|Enetjärn") ~ "VOF_VASTERB",
           # Modigh verksam/anställd inom NATURSKYDDSFORENINGEN 2006-2019, anställd av NRM 2020
           # därefter utan affiliering till organisation eller förening
-          stringr::str_detect("collector", "Modigh") & get(date_col) > "2021-01-01" ~ "RINGMARKARE",
-          stringr::str_detect("collector", "Modigh") & dplyr::between(get(date_col), as.Date("2020-01-01"), as.Date("2020-12-31")) ~ "NRM",
-          stringr::str_detect("collector", "Modigh") & get(date_col) < "2019-12-31" ~ "NATURSKYDDSFORENINGEN",
-          stringr::str_detect("collector", "Helander") & get(date_col) < "1984-12-31" ~ "NATURSKYDDSFORENINGEN",
+          stringr::str_detect(.data[["collector"]], "Modigh") & get(date_col) > "2021-01-01" ~ "RINGMARKARE",
+          stringr::str_detect(.data[["collector"]], "Modigh") & dplyr::between(get(date_col), as.Date("2020-01-01"), as.Date("2020-12-31")) ~ "NRM",
+          stringr::str_detect(.data[["collector"]], "Modigh") & get(date_col) < "2019-12-31" ~ "NATURSKYDDSFORENINGEN",
+          stringr::str_detect(.data[["collector"]], "Helander") & get(date_col) < "1984-12-31" ~ "NATURSKYDDSFORENINGEN",
           # Björn Helander: mellan 1985-2005 då han övergick till heltidstjänst på NRM? Sätt SNF, alla insamlingstillstånd verkar ha gått på SNF...
-          stringr::str_detect("collector", "Helander") & dplyr::between(get(date_col), as.Date("1985-01-01"), as.Date("2005-12-31")) ~ "NATURSKYDDSFORENINGEN",
-          stringr::str_detect("collector", "Helander") & dplyr::between(get(date_col), as.Date("2006-01-01"), as.Date("2013-08-01")) ~ "NRM",
+          stringr::str_detect(.data[["collector"]], "Helander") & dplyr::between(get(date_col), as.Date("1985-01-01"), as.Date("2005-12-31")) ~ "NATURSKYDDSFORENINGEN",
+          stringr::str_detect(.data[["collector"]], "Helander") & dplyr::between(get(date_col), as.Date("2006-01-01"), as.Date("2013-08-01")) ~ "NRM",
           # Hur ska Björn Helander hanteras efter pensionering? Namn på företag, men haft affiliering till NRM!
-          stringr::str_detect("collector", "Helander") & get(date_col) > "2013-08-01" ~ "NRM",
+          stringr::str_detect(.data[["collector"]], "Helander") & get(date_col) > "2013-08-01" ~ "NRM",
           dplyr::between(get(date_col), as.Date("1964-01-01"), as.Date("1989-01-01")) ~ "NATURSKYDDSFORENINGEN",
           get(date_col) < "1964-01-01" ~ "SAKNAS",
           TRUE ~ "SAKNAS"

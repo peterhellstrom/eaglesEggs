@@ -24,6 +24,7 @@ Imports:
     tidyxl (>= 1.0.10)
 Suggests: 
     ggplot2,
+    openxlsx2,
     writexl
 Remotes: 
     github::peterhellstrom/eagles
