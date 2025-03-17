@@ -3,7 +3,7 @@
 #' @param DV
 #' @param ...
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples

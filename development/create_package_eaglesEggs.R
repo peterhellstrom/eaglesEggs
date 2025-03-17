@@ -78,6 +78,7 @@ usethis::use_dev_package("eagles", remote = "github::peterhellstrom/eagles")
 
 # Suggests ----
 usethis::use_package("ggplot2", "Suggests")
+usethis::use_package("openxlsx2", "Suggests")
 usethis::use_package("writexl", "Suggests")
 
 requireNamespace("ggplot2", quietly = TRUE)

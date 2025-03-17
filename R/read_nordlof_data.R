@@ -3,7 +3,7 @@
 #' @param data
 #' @param ...
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -37,7 +37,7 @@ bde_read_raw <- function(data, ...) {
 #' @param y
 #' @param ...
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples

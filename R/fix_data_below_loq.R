@@ -3,7 +3,7 @@
 #' @param x
 #' @param na_vec
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -31,7 +31,7 @@ fix_missing <- function(
 #' @param .bound
 #' @param .replace_na
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -68,7 +68,7 @@ fix_below_loq <- function(
 #' @param na.rm
 #' @param missing
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -83,7 +83,7 @@ sum_below_loq <- function(x, na.rm = TRUE, missing = -99.99) {
 #' @param missing
 #' @param na.rm
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -105,7 +105,7 @@ sum_below_loq_2 <- function(x, missing = -99.99, na.rm = TRUE) {
 #' @param FPRC
 #' @param missing
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples

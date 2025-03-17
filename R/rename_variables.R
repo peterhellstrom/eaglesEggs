@@ -4,7 +4,7 @@
 #' @param .pattern
 #' @param .cols
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples

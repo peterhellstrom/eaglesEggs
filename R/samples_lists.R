@@ -4,7 +4,7 @@
 #' @param sheet
 #' @param include_dates
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -56,7 +56,7 @@ get_samples <- function(
 #' @param path
 #' @param sheet
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -78,7 +78,7 @@ get_samples_ov_xl <- function(
 #'
 #' @param codes_path
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples

@@ -3,7 +3,7 @@
 #' @param .data
 #' @param .na_values
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples

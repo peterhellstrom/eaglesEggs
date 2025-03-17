@@ -5,7 +5,7 @@
 #' @param .na_numeric
 #' @param na.rm
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples

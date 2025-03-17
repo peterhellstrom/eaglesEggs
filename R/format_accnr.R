@@ -4,7 +4,7 @@
 #' @param regex
 #' @param exclude_non_matches
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -62,7 +62,7 @@ format_accnr <- function(
 #' @param .data
 #' @param .variable
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -82,7 +82,7 @@ add_accnr <- function(.data, .variable = "PROV_KOD_ORIGINAL") {
 #'
 #' @param accnr
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -111,7 +111,7 @@ ESB_accnr2id <- function (accnr) {
 #'
 #' @param id
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples

@@ -6,7 +6,7 @@
 #' @param skip
 #' @param ...
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -54,7 +54,7 @@ wtse_sites_eggs <- function(
 #' @param path
 #' @param ...
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -80,7 +80,7 @@ wtse_provdata_biota <- function(
 #' @param dsn
 #' @param path
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -140,7 +140,7 @@ wtse_sites_provmetadata <- function(
 #' @param collector_org
 #' @param accnr_only
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -326,7 +326,7 @@ wtse_eggs_1996 <- function(
 #' @param ...
 #' @param query
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples

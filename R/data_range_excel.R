@@ -11,7 +11,7 @@
 #' @param n
 #' @param search_column
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -121,7 +121,7 @@ get_data_range <- function(
 #' @param n_rows
 #' @param col_names
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples

@@ -9,7 +9,7 @@
 #' @param a
 #' @param b
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -87,7 +87,7 @@ egg_volume <- function(
 #' @param a
 #' @param b
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -120,7 +120,7 @@ egg_vol <- function(
 #' @param embryo_length
 #' @param step
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples

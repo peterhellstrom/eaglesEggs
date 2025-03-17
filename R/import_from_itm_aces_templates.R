@@ -6,7 +6,7 @@
 #' @param range
 #' @param ...
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -27,7 +27,7 @@ read_lab_file_itm <- function(path, sheet, range, ...) {
 #' @param range_2
 #' @param range_3
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -111,7 +111,7 @@ read_lab_file_itm_header <- function(
 #' @param col_names
 #' @param cols_first_5
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -138,7 +138,7 @@ import_new_template <- function(
 #' @param sheet
 #' @param range
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -198,7 +198,7 @@ import_new_template_data <- function(
 #' @param range
 #' @param clean_names
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples

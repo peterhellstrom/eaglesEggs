@@ -14,7 +14,7 @@
 #' @param coef_above
 #' @param coef_below
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -34,7 +34,7 @@ calculate_uncertainty <- function(.x, limit, coef_above, coef_below) {
 #' @param const1
 #' @param const2
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
@@ -59,7 +59,7 @@ calculate_uncertainty_2 <- function(data, column, cut, const1, const2) {
 #' @param .x
 #' @param .col
 #'
-#' @return
+#' @returns
 #' @export
 #'
 #' @examples
