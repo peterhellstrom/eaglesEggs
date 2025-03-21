@@ -3,7 +3,6 @@
 export(ESB_accnr2id)
 export(ESB_id2accnr)
 export(add_accnr)
-export(add_sum_contaminants)
 export(add_uncertainty_aces)
 export(bde_diff)
 export(bde_read_raw)
